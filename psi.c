@@ -37,7 +37,7 @@ bool TestLeftZenerLeakage(void)
     SetLeftPower12V();
     EnableLeftPower();
     
-    delay_ms(100);
+    delay_ms(200);
     
     // Leakage current is too big -> error
     res = (GetLeftCurrentUa() > THRESHOLD_I);
@@ -60,7 +60,7 @@ bool TestLeftZenerProtection(void)
     SetLeftPower16V();
     EnableLeftPower();
     
-    delay_ms(100);
+    delay_ms(200);
     
     // Voltage should be low because of current limitation by LM317
     res = (GetLeftVoltageMv() > THRESHOLD_V_16);
@@ -89,7 +89,7 @@ bool TestLeftThyristor(int n)
     
     // Connect low load first (about 120mA)
     ConnectLeftLowLoad();
-    delay_ms(100);
+    delay_ms(500);
     
     
     // Thyristors should NOT be open so voltage should be = 12V
@@ -105,7 +105,7 @@ bool TestLeftThyristor(int n)
     
     // Connect high load
     ConnectLeftHighLoad();
-    delay_ms(100);
+    delay_ms(2000);
     
     
     // Thyristors should be open so
@@ -117,7 +117,7 @@ bool TestLeftThyristor(int n)
     DisconnectLeftLoad();
     DisableLeftThyristors();
     
-    delay_ms(200);
+    delay_ms(500);
     
     return res;
 }
@@ -141,12 +141,12 @@ bool CheckConnection()
     
     // Connect low load first
     // Need for properly disable thyristors
-    ConnectLeftLowLoad();
-    delay_ms(100);
+    /*ConnectLeftLowLoad();
+    delay_ms(100);*/
     
     // Connect high load
     ConnectLeftHighLoad();
-    delay_ms(100);
+    delay_ms(1500);
     
     // Thyristors should NOT be open so voltage should be about 11V
     res = (GetLeftVoltageMv() < THRESHOLD_V_12_C);
@@ -156,7 +156,7 @@ bool CheckConnection()
     DisconnectLeftLoad();
     DisableLeftThyristors();
     
-    delay_ms(200);
+    delay_ms(500);
     
     return res;
 }

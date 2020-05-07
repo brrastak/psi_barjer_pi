@@ -14,6 +14,8 @@
 #ifndef __HARDWARE_H__
 #define __HARDWARE_H__
 
+extern volatile bool led_blinking;
+
 // Reset to start state
 void ResetHardware(void);
 // Power control
@@ -50,6 +52,9 @@ void SetLeftLedSwitchedOff(void);
 void SetRightLedRed(void);
 void SetRightLedGreen(void);
 void SetRightLedSwitchedOff(void);
+void EnableBlinking(void);
+void DisableBlinking(void);
+void BlinkRightLed(void);
 // Tamper
 bool IsTamperPressed(void);
 // Mode switch

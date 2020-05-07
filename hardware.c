@@ -28,8 +28,8 @@ void ResetHardware(void)
     EnableLeftThyristor(3);
     EnableRightThyristor(3);
     // Switch all LEDs off
-    SetLeftLedSwitchedOff();
-    SetRightLedSwitchedOff();
+    //SetLeftLedSwitchedOff();
+    //SetRightLedSwitchedOff();
 }
 // Power control
 void EnableLeftPower(void)
@@ -266,4 +266,17 @@ void SetRightLedSwitchedOff(void)
 {
     ResetPin(RIGHT_R_LED_PIN);
     ResetPin(RIGHT_G_LED_PIN);
+}
+void EnableBlinking(void)
+{
+    led_blinking = true;
+}
+void DisableBlinking(void)
+{
+    led_blinking = false;
+    ResetPin(RIGHT_G_LED_PIN);
+}
+void BlinkRightLed(void)
+{
+    SwitchPin(RIGHT_G_LED_PIN);
 }
